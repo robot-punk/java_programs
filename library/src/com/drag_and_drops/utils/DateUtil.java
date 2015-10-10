@@ -12,7 +12,7 @@ import java.util.Date;
  * @author takashi-okumura
  *
  */
-public class DateUtil {
+public final class DateUtil {
 	/**
 	 * 日付文字列を解析する.
 	 *
@@ -43,19 +43,19 @@ public class DateUtil {
 		cal.setTime(date);
 		switch (cal.get(Calendar.DAY_OF_WEEK)) {
 		case Calendar.SUNDAY:
-			return "日";
+			return ResourceUtil.getPropertyValue("sun");
 		case Calendar.MONDAY:
-			return "月";
+			return ResourceUtil.getPropertyValue("mon");
 		case Calendar.TUESDAY:
-			return "火";
+			return ResourceUtil.getPropertyValue("tue");
 		case Calendar.WEDNESDAY:
-			return "水";
+			return ResourceUtil.getPropertyValue("wed");
 		case Calendar.THURSDAY:
-			return "木";
+			return ResourceUtil.getPropertyValue("thu");
 		case Calendar.FRIDAY:
-			return "金";
+			return ResourceUtil.getPropertyValue("fri");
 		case Calendar.SATURDAY:
-			return "土";
+			return ResourceUtil.getPropertyValue("sat");
 		default:
 			return "";
 		}

@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.text.ParseException;
 import java.util.Date;
 
+import javax.swing.DebugGraphics;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -31,19 +33,48 @@ public class DateUtilTest {
 	public void tearDown() throws Exception {
 	}
 
+
 	@Test
 	public void testGetDayOfWeek() {
 		try {
-			assertEquals("金", DateUtil.getDayOfWeek(DateUtil.parseDate("yyyy/mm/dd", "2016/01/01")));
-			assertEquals("土", DateUtil.getDayOfWeek(DateUtil.parseDate("yyyy/mm/dd", "2016/01/02")));
-			assertEquals("日", DateUtil.getDayOfWeek(DateUtil.parseDate("yyyy/mm/dd", "2016/01/03")));
-			assertEquals("月", DateUtil.getDayOfWeek(DateUtil.parseDate("yyyy/mm/dd", "2016/01/04")));
-			assertEquals("火", DateUtil.getDayOfWeek(DateUtil.parseDate("yyyy/mm/dd", "2016/01/05")));
-			assertEquals("水", DateUtil.getDayOfWeek(DateUtil.parseDate("yyyy/mm/dd", "2016/01/06")));
-			assertEquals("木", DateUtil.getDayOfWeek(DateUtil.parseDate("yyyy/mm/dd", "2016/01/07")));
+			assertEquals("金", DateUtil.getDayOfWeek(DateUtil.parseDate(
+					"yyyy/MM/dd", "2016/01/01")));
+			assertEquals("土", DateUtil.getDayOfWeek(DateUtil.parseDate(
+					"yyyy/MM/dd", "2016/01/02")));
+			assertEquals("日", DateUtil.getDayOfWeek(DateUtil.parseDate(
+					"yyyy/MM/dd", "2016/01/03")));
+			assertEquals("月", DateUtil.getDayOfWeek(DateUtil.parseDate(
+					"yyyy/MM/dd", "2016/01/04")));
+			assertEquals("火", DateUtil.getDayOfWeek(DateUtil.parseDate(
+					"yyyy/MM/dd", "2016/01/05")));
+			assertEquals("水", DateUtil.getDayOfWeek(DateUtil.parseDate(
+					"yyyy/MM/dd", "2016/01/06")));
+			assertEquals("木", DateUtil.getDayOfWeek(DateUtil.parseDate(
+					"yyyy/MM/dd", "2016/01/07")));
 			assertEquals("", DateUtil.getDayOfWeek(null));
 		} catch (ParseException e) {
 			fail();
+		}
+	}
+
+	@Test
+	public void testParseDate() {
+		Date result;
+
+		// OK
+		try {
+			result = DateUtil.parseDate("yyyy/MM/dd", "2016/01/01");
+			assertEquals(true, result.equals(new Date("2016/01/01")));
+		} catch (ParseException e) {
+			fail();
+		}
+
+		// NG
+		try {
+			result = DateUtil.parseDate("yyyy/MM/dd", "2016-01-01");
+			fail();
+		} catch (ParseException e) {
+			// OK
 		}
 	}
 
